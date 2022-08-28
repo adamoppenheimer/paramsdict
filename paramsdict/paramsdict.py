@@ -236,7 +236,7 @@ class ParamsDictBase(MutableMapping):
     def copy(self):
         data_copy = self.__data.copy()
         options_copy = self.__options.copy()
-        return ParamsDict({k: (v, *options_copy[k]) for k, v in data_copy.items()})
+        return ParamsDictBase({k: (v, *options_copy[k]) for k, v in data_copy.items()})
 
     def get_multiple(self, ks):
         '''
