@@ -15,6 +15,8 @@ It has three advantages over built-in dictionaries:
 2. Values can be constrained. This guarantees users enter valid parameters.
 3. All keys have linked descriptions. This means users can check parameter definitions without having to refer to the documentation.
 
+The package also generates clear errors messages so if an input is an invalid, the user knows why it didn't work.
+
 ``ParamsDict`` is used in `BipartitePandas <https://github.com/tlamadon/bipartitepandas/>`_ and `PyTwoWay <https://github.com/tlamadon/pytwoway/>`_. The original code was written for those projects, under the supervision of Professor Thibaut Lamadon at the University of Chicago. The package was inspired by `this <https://stackoverflow.com/a/14816620/17333120/>`_ post on Stack Overflow.
 
 Installation
