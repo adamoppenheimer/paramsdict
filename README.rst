@@ -57,7 +57,7 @@ Say you are writing a function that simulates values from a normal distribution 
             ''', None),
         'sd': (1, 'type_constrained', ((int, float), _gteq0),
             '''
-                (default=1) sd of draws.
+                (default=1) Standard deviation of draws.
             ''', '>= 0'),
         'algorithm': ('a', 'set', ['a', 'b'],
             '''
