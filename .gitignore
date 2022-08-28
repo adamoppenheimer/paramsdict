@@ -1,0 +1,52 @@
+# Folders #
+###########
+.vscode/
+docs/build/
+paramsdict/__pycache__/
+tests/__pycache__/
+.pytest_cache/
+.eggs
+docs/source/notebooks/.ipynb_checkpoints/
+tests/.ipynb_checkpoints/
+dist/
+paramsdict.egg-info/
+build/
+# docs/
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
