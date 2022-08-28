@@ -41,13 +41,13 @@ Say you are writing a function that simulates values from a normal distribution 
 
     from paramsdict import ParamsDict
 
-    def _g0(x):
+    def _gt0(x):
         return x > 0
-    def _geq0(x):
+    def _gteq0(x):
         return x >= 0
 
     sim_params = ParamsDict({
-        'n': (10, 'type_constrained', (int, _g0),
+        'n': (10, 'type_constrained', (int, _gt0),
             '''
                 (default=10) Number of draws to simulate.
             ''', '> 0'),
@@ -55,7 +55,7 @@ Say you are writing a function that simulates values from a normal distribution 
             '''
                 (default=0) Mean of draws.
             ''', None),
-        'sd': (1, 'type_constrained', ((int, float), _geq0),
+        'sd': (1, 'type_constrained', ((int, float), _gteq0),
             '''
                 (default=1) sd of draws.
             ''', '>= 0'),
