@@ -1,21 +1,36 @@
 '''
-Class for a parameter dictionary.
+Class for a user-friendly parameter dictionary.
 '''
 import copy
 from collections.abc import MutableMapping
 from numpy import ndarray
 from paramsdict.util import _is_subtype, _is_subdtype, to_list
 
-def new_paramsdict(default_dict):
-    return _ParamsDictConstructor(ParamsDict(default_dict))
-
-class _ParamsDictConstructor():
+class ParamsDict():
     '''
-    Class to ensure that user-generated instances of ParamsDicts are copies of the default instance of the ParamsDict.
+    Dictionary with fixed keys, and where values must follow given rules. Source: https://stackoverflow.com/a/14816620/17333120.
+
+    Arguments:
+        default_dict (dict): default dictionary. Each key should provide a tuple of (default_value, options_type, options, description, constraints), where `default_value` gives the default value associated with the key; `options_type` defines the valid types the value may take; `options` gives the valid values that can associated with the key (this can be a type or a set of particular values); `description` gives a description of the key-value pair; and `constraints` is either None if there are no constraints, or gives a description of the constraints on the value. The specifics on `options_type` follow. If `options_type` is:
+            'type' - the key must be associated with a particular type
+            'list_of_type' - the value must be a particular type or a list of values of a particular type
+            'type_none' - the value can either be None or must be a particular type
+            'list_of_type_none': the value can either be None or must be a particular type or a list of values of a particular type
+            'type_constrained' - the value must be a particular type and fulfill given constraints
+            'type_constrained_none' - the value can either be None or must be a particular type and fulfill given constraints
+            'dict_of_type' - the value must be a dictionary where the values are of a particular type
+            'dict_of_type_none' - the value can either be None or must be a dictionary where the values are of a particular type
+            'array_of_type' - the value must be an array of values of a particular datatype
+            'array_of_type_none' - the value can either be None or must be an array of values of a particular datatype
+            'array_of_type_constrained' - the value must be an array of values of a particular datatype and fulfill given constraints
+            'array_of_type_constrained_none' - the value can either be None or must be an array of values of a particular datatype and fulfill given constraints
+            'set' - the value must be a member of a given set of values
+            'list_of_set' - the value must be a member of a given set of values or a list of members of a given set of values
+            'any' - the value can be anything
     '''
 
-    def __init__(self, default_paramsdict):
-        self._paramsdict = default_paramsdict
+    def __init__(self, default_dict):
+        self._paramsdict = ParamsDictBase(default_dict)
 
     def __call__(self, update_dict=None):
         '''
@@ -33,9 +48,9 @@ class _ParamsDictConstructor():
         ret.update(copy.deepcopy(update_dict))
         return ret
 
-class ParamsDict(MutableMapping):
+class ParamsDictBase(MutableMapping):
     '''
-    Dictionary with fixed keys, and where values must follow given rules. Source: https://stackoverflow.com/a/14816620/17333120.
+    Class to ensure that user-generated instances of ParamsDicts are copies of the default instance of the ParamsDict.
 
     Arguments:
         default_dict (dict): default dictionary. Each key should provide a tuple of (default_value, options_type, options, description, constraints), where `default_value` gives the default value associated with the key; `options_type` defines the valid types the value may take; `options` gives the valid values that can associated with the key (this can be a type or a set of particular values); `description` gives a description of the key-value pair; and `constraints` is either None if there are no constraints, or gives a description of the constraints on the value. The specifics on `options_type` follow. If `options_type` is:

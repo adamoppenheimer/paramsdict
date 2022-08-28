@@ -1,2 +1,2 @@
 
-from .paramsdict import new_paramsdict
+from .paramsdict import ParamsDict
